@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CareerCloud.Pocos.ApplicantJobApplicationPoco>
+
+@{
+    ViewData["Title"] = "ApplicantJobApplication";
+}
+
+@{ if (Model != null)
+    {
+        <h1>Job Application</h1>
+        <p>
+            <a asp-controller="ApplicantJobApplication" asp-action="Create">ApplyForNewJob </a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyJob.CompanyJobDescriptions.
+                   Where (a=>a.Job== model.Job).FirstOrDefault().JobName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApplicationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CompanyJob.Company)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyJob.CompanyJobDescriptions.FirstOrDefault(e => true).JobName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationDate)
+                        </td>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyJob.CompanyProfile.CompanyDescriptions.FirstOrDefault().CompanyName)
+                        </td>
+                        <td>
+                            <a asp-controller="ApplicantJobApplication" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-controller="ApplicantJobApplication" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-controller="ApplicantJobApplication" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

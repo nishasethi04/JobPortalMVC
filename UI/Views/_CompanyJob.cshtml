@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CareerCloud.Pocos.CompanyJobPoco>
+
+@{
+    ViewData["Title"] = "Company Job";
+}
+
+<h1>Company Job</h1>
+
+<p>
+    <a asp-controller="CompanyJob" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsInactive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompanyHidden)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyProfile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfileCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsInactive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompanyHidden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyProfile.CompanyDescriptions.FirstOrDefault().CompanyName)
+                </td>
+                <td>
+                    <a asp-controller="CompanyJob" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-controller="CompanyJob" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-controller="CompanyJob" asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
+                    <a asp-controller="CompanyJobDescription" asp-action="Index"
+                       asp-route-id="@item.Id">Job Description</a>|
+
+                    <a asp-controller="CompanyJobEducation" asp-action="Index"
+                       asp-route-id="@item.Id">JobEducation</a>|
+                    <a asp-controller="CompanyJobSkill" asp-action="Index"
+                       asp-route-id="@item.Id">CompanyJobSkill</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

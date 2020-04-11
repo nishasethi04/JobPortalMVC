@@ -1,0 +1,38 @@
+﻿@model CareerCloud.Pocos.ApplicantJobApplicationPoco
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Apply Job</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Applicant" class="control-label"></label>
+                @*<select asp-for="Applicant"  class ="form-control" asp-items="ViewBag.Applicant"></select>*@
+                <label asp-for="Applicant"> @ViewBag.ApplicantId</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Job" class="control-label"></label>
+                <select asp-for="Job" id="ddlJob" class="form-control" asp-items="ViewBag.JobName"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDate" class="control-label"></label>
+                <input asp-for="ApplicationDate" class="form-control" />
+                <span asp-validation-for="ApplicationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
